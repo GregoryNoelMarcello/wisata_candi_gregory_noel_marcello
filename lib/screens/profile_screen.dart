@@ -136,11 +136,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               //TODO 4. Buat ProfileActions yang berisi TextButton sign in/out
-              SizedBox(height: 4),
-              Divider(color: Colors.deepPurple[100],),
-              SizedBox(height: 20),
-              isSignedIn ? TextButton(onPressed: signOut, child: Text('Sign Out'))
-                  : TextButton(onPressed: signIn, child: Text('Sign In')),
             ],
           ),
         )
