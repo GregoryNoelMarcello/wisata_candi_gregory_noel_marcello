@@ -58,9 +58,89 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
-              )
+              ),
               //TODO 3. Buat bagian ProfileInfo yang berisi info profil
+              SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100]),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 3,
+                    child: Row(
+                      children: [
+                        Icon(Icons.lock, color: Colors.amber),
+                        SizedBox(width: 8),
+                        Text('Pengguna',style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(': $userName', style: TextStyle(
+                        fontSize: 18),
+                    ),
+                  ),
+                  if(isSignedIn) Icon(Icons.edit),
+                ],
+              ),
+              // Baris Nama
+              SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100]),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 3,
+                    child: Row(
+                      children: [
+                        Icon(Icons.person, color: Colors.blue),
+                        SizedBox(width: 8),
+                        Text('Nama',style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(': $fullName', style: TextStyle(
+                        fontSize: 18),
+                    ),
+                  ),
+                  if(isSignedIn) Icon(Icons.edit),
+                ],
+              ),
+              // Baris Favorit
+              SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100]),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 3,
+                    child: Row(
+                      children: [
+                        Icon(Icons.favorite, color: Colors.red),
+                        SizedBox(width: 8),
+                        Text('Favorit',style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(': $favoriteCandiCount', style: TextStyle(
+                        fontSize: 18),
+                    ),
+                  ),
+                  if(isSignedIn) Icon(Icons.edit),
+                ],
+              ),
+
               //TODO 4. Buat ProfileActions yang berisi TextButton sign in/out
+              SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100],),
+              SizedBox(height: 20),
+              isSignedIn ? TextButton(onPressed: signOut, child: Text('Sign Out'))
+                  : TextButton(onPressed: signIn, child: Text('Sign In')),
             ],
           ),
         )
