@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wisata_candi/data/candi_data.dart';
+import 'package:wisata_candi/widgets/item_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,14 +15,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       // TODO: 1 Buat appbar dengat judul Wisata Candi
       appBar: AppBar(title: Text('Wisata Candi'),),
-
       // TODO: 2 Buat body dengan GridView.builder
-
       body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount: 2,
-          padding: EdgeInsets all: 8,
+          padding: EdgeInsets.all(8),
           itemCount: candiList.length,
-          itemBuilder: ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2),
+          itemBuilder: (context,index){
+            return ItemCard(candi: candiList[index]);
+          }
+      ),
       // TODO: 3 Buat ItemCard sebagai return value dari Gridbiew.builder
     );
   }
