@@ -28,19 +28,28 @@ class DetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                //tombol back costume
+                //tombol back costum
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+                  const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 32
+                  ),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.deepPurple[100]?.withOpacity(0.8),
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                      onPressed: () {
+                          Navigator.push(context);
+                        },
+                      icon: const Icon(
+                          Icons.arrow_back,
+                      ),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             //detail info
@@ -85,7 +94,7 @@ class DetailScreen extends StatelessWidget {
                       ),
                       Text(
                         ':${candi.location}',
-                      )
+                      ),
                     ],
                   ),
                   Row(
@@ -204,7 +213,7 @@ class DetailScreen extends StatelessWidget {
                   )
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
