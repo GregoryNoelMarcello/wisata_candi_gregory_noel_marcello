@@ -42,7 +42,7 @@ class DetailScreen extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: () {
-                          Navigator.push(context);
+                        Navigator.push(context);
                         },
                       icon: const Icon(
                           Icons.arrow_back,
