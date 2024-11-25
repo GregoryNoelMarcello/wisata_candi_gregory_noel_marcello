@@ -12,19 +12,14 @@ import 'package:wisata_candi/screens/search_screen.dart';
 void main() {
   runApp(const MyApp());
 }
-
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Wisata Candi',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -44,11 +39,18 @@ class _MyAppState extends State<MyApp> {
       ),
       // home : const ProfileScreen
       // home DetailScreen(candi: candiList[0]),
-      home: HomeScreen(),
+      home: SignUpScreen(),
+      initialRoute: '/',
+      routes: {
+        '/homescreen': (context) => HomeScreen(),
+        '/signin': (context) => SignInScreen(),
+        '/signup': (context) => SignUpScreen(),
+    },
       // home: DetailScreen(candi: candiList[0]),
     );
   }
 }
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -73,6 +75,7 @@ class _MainScreenState extends State<MainScreen> {
       body: _children[_currentIndex],
       //TODO: 3.BottomNavigatorBar
       bottomNavigationBar: Theme(
+        //TODO: 4.data child theme
           data: Theme.of(context).copyWith(canvasColor: Colors.deepPurple[50]),
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
@@ -110,8 +113,8 @@ class _MainScreenState extends State<MainScreen> {
             selectedItemColor: Colors.deepPurple,
             unselectedItemColor: Colors.deepPurple[100],
             showSelectedLabels: true,
-          )),
-      //TODO: 4.data child theme
+          ),
+      ),
     );
   }
 }
