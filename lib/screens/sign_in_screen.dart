@@ -69,15 +69,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       obscureText: _obscurePassword,
                     ),
                     //TODO 7. Pasang ElevatedButton Sign In
-
                     SizedBox(height: 20),
                     ElevatedButton(onPressed: () {}, child: Text('Sign In')),
                     //TODO 8. Pasang TextButton Sign Up
-
                     SizedBox(height: 10),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('Belum punya akun? Daftar di sini')),
+                    // TextButton(
+                    //     onPressed: () {},
+                    //     child: Text('Belum punya akun? Daftar di sini')),
                     RichText(
                       text: TextSpan(
                         text: 'Belum punya akun?',
@@ -91,7 +89,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 fontSize: 16
                             ),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = (){},
+                              ..onTap = (){
+                              Navigator.pushNamed(context, '/signup');
+                              },
                           ),
                         ],
                       ),

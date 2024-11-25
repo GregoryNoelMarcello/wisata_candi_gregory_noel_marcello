@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   // TODO: 1. Deklarasikan variabel
+
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -18,11 +20,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _errorText = '';
 
   bool _obscurePassword = true;
+
   //TODO: 1. Membuat fungsi _signup
-  void _signUp(){
-    String name = _fullnameController.text.trim();
-    String username = _usernameController.text.trim();
-    String password = _passwordController.text.trim();
+  void _signUp() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String name = _fullnameController.text.trim();
+    final String username = _usernameController.text.trim();
+    final String password = _passwordController.text.trim();
+
     if(password.length < 8 ||
         !password.contains(RegExp(r'[A-Z]'))||
         !password.contains(RegExp(r'[a-z]'))||
@@ -31,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       setState(() {
         _errorText = 'Minimal 8 karakter, kombinasi [A-Z], [a-z], [0-9], [!@#\\\$%^&*(),.?":{}|<>]';
       });
+      return;
     }
     print('*** Sign Up berhasil!');
     print('Nama: $name');
