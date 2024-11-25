@@ -19,6 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   String _errorText = '';
 
+  bool _isSignedIn = false;
+
   bool _obscurePassword = true;
 
   //TODO: 1. Membuat fungsi _signup
