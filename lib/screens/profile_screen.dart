@@ -14,6 +14,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String userName = '';
   int favoriteCandiCount = 0;
 
+  // TODO 5. Implementasi fungsi signIn
+  void signIn(){
+    Navigator.pushNamed(context, '/signin');
+  }
+
+  // TODO 6. Implementasi fungsi signOut
+  void signOut(){
+    setState(() {
+      isSignedIn = !isSignedIn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,6 +148,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               //TODO 4. Buat ProfileActions yang berisi TextButton sign in/out
+              SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100]),
+              SizedBox(height: 20),
+              isSignedIn ? TextButton(onPressed: signOut, child: Text('Sign Out'))
+                  : TextButton(onPressed: signIn, child: Text('Sign In')),
             ],
           ),
         )
