@@ -13,7 +13,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   // TODO: 1. Deklarasikan variabel
-
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -24,7 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool _obscurePassword = true;
 
-  //TODO: 1. Membuat fungsi _signup
+  //TODO: 1.Membuat method _signUp
   void _signUp() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String name = _fullnameController.text.trim();
@@ -37,45 +36,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
         !password.contains(RegExp(r'[0-9]'))||
         !password.contains(RegExp(r'[!@#\\\$%^&*(),.?":{}|<>]'))){
       setState(() {
-        _errorText = 'Minimal 8 karakter, kombinasi [A-Z], [a-z], [0-9], [!@#\\\$%^&*(),.?":{}|<>]';
+        _errorText =
+        'Minimal 8 karakter, kombinasi [A-Z], [a-z], [0-9], [!@#\\\$%^&*(),.?":{}|<>]';
       });
       return;
     }
-    //TODO: 3 Jika name, username, password tidak kosong lakukan enkripsi
-    if(name.isNotEmpty && username.isNotEmpty && password.isNotEmpty) {
-      final encrypt.Key key = encrypt.Key.fromLength(32);
+    // TODO: 3. Jika name, username, password tidak kosong lakukan enkripsi
+    if (name.isNotEmpty && username.isNotEmpty && password.isNotEmpty){
+      final key = encrypt.Key.fromLength(32);
       final iv = encrypt.IV.fromLength(16);
 
-      final encrypter = encrypt.Encryptor(encrypt.AES(key));
-      final encryptedName = encrypter.encrypt(username, iv: iv);
+      final encrypter = encrypt.Encrypter(encrypt.AES(key));
+      final encryptedName = encrypter.encrypt(name, iv: iv);
       final encryptedUsername = encrypter.encrypt(username, iv: iv);
-      final encryptedPassword = encrypter.encrypt(username, iv: iv);
+      final encryptedPassword = encrypter.encrypt(password, iv: iv);
 
+      //simpan data pengguna di SharedPreferences
       prefs.setString('fulname', encryptedName.base64);
-      prefs.setString('password', encryptedPassword.base64);
       prefs.setString('username', encryptedUsername.base64);
+      prefs.setString('password', encryptedPassword.base64);
       prefs.setString('key', key.base64);
       prefs.setString('iv', iv.base64);
-
-
     }
 
     //simpan data pengguna di SharedPreferences
-    prefs.setString('Full Name', name);
-    prefs.setString('Username', username);
-    prefs.setString('Password', password);
+    // prefs.setString('fulname', name);
+    // prefs.setString('username', username);
+    // prefs.setString('password', password);
 
-    //buat navigasi ke signinscreen
-    Navigator.pushReplacementNamed(context, '/SignInScreen');
+    //buat navigasi ke SignInScreen
+    Navigator.pushReplacementNamed(context, '/signin');
   }
 
-    print('*** Sign Up berhasil!');
-    print('Nama: $name');
-    print('Nama Pengguna: $username');
-    print('Password: $password');
-  }
-
-  //TODO: 2.Membuat method dispose
+  //TODO: 2.Membuat metode dispose
   @override
   void dispose(){
     //TODO: Implement dispose
