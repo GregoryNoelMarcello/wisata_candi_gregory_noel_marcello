@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 
-
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({super.key});
 
@@ -19,12 +18,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   String _errorText = '';
 
-  bool _isSignedIn = false;
-
   bool _obscurePassword = true;
 
-  //TODO: 1.Membuat method _signUp
-  void _signUp() async{
+  //TODO: 2.Membuat method _signUp
+  void _signUp()async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String name = _fullnameController.text.trim();
     final String username = _usernameController.text.trim();
@@ -36,39 +33,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
         !password.contains(RegExp(r'[0-9]'))||
         !password.contains(RegExp(r'[!@#\\\$%^&*(),.?":{}|<>]'))){
       setState(() {
-        _errorText =
-        'Minimal 8 karakter, kombinasi [A-Z], [a-z], [0-9], [!@#\\\$%^&*(),.?":{}|<>]';
+        _errorText = 'Minimal 8 karakter, kombinasi [A-Z], [a-z], [0-9], [!@#\\\$%^&*(),.?":{}|<>]';
       });
       return;
     }
-    // TODO: 3. Jika name, username, password tidak kosong lakukan enkripsi
-    if (name.isNotEmpty && username.isNotEmpty && password.isNotEmpty){
-      final key = encrypt.Key.fromLength(32);
+    //TODO : 3.Jika nama, username, password tidak kosong lakukan enkripsi
+    if(name.isNotEmpty && username.isNotEmpty && password.isNotEmpty){
+      final encrypt.Key key = encrypt.Key.fromLength(32);
       final iv = encrypt.IV.fromLength(16);
-
       final encrypter = encrypt.Encrypter(encrypt.AES(key));
       final encryptedName = encrypter.encrypt(name, iv: iv);
-      final encryptedUsername = encrypter.encrypt(username, iv: iv);
-      final encryptedPassword = encrypter.encrypt(password, iv: iv);
+      final encryptedUsername = encrypter.encrypt(name, iv: iv);
+      final encryptedPassword = encrypter.encrypt(name, iv: iv);
 
       //simpan data pengguna di SharedPreferences
-      prefs.setString('fulname', encryptedName.base64);
+      prefs.setString('fullname', encryptedName.base64);
       prefs.setString('username', encryptedUsername.base64);
       prefs.setString('password', encryptedPassword.base64);
       prefs.setString('key', key.base64);
       prefs.setString('iv', iv.base64);
+
     }
-
     //simpan data pengguna di SharedPreferences
-    // prefs.setString('fulname', name);
-    // prefs.setString('username', username);
-    // prefs.setString('password', password);
+    // prefs.setString('Full Name', name);
+    // prefs.setString('Username', username);
+    // prefs.setString('Password', password);
 
-    //buat navigasi ke SignInScreen
-    Navigator.pushReplacementNamed(context, '/signin');
+    //buat navigasi ke signinscreen
+    Navigator.pushReplacementNamed(context, '/SignInScreen');
   }
 
-  //TODO: 2.Membuat metode dispose
+
+  //TODO: 4.Membuat method dispose
   @override
   void dispose(){
     //TODO: Implement dispose
@@ -77,7 +73,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +128,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     // TODO: 8. Pasang ElevatedButton Sign In
                     SizedBox(height: 20),
-                    ElevatedButton(onPressed: () {}, child: Text('Sign Up')),
+                    ElevatedButton(onPressed: () {
+                      _signUp();
+                    }, child: Text('Sign Up')),
                   ],
                 )),
           ),

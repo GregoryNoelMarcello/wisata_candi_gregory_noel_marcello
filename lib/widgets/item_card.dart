@@ -5,7 +5,6 @@ import 'package:wisata_candi/screens/detail_screen.dart';
 class ItemCard extends StatelessWidget {
   // TODO: 1. Deklarasikan variabel yang dibutuhkan dan pasang pada konstruktor
   final Candi candi;
-
   const ItemCard({super.key, required this.candi});
 
   @override
@@ -30,6 +29,7 @@ class ItemCard extends StatelessWidget {
           children: [
             // TODO: 3. Buat Image debagai anak dari Column
             Expanded(
+              //TODO 7. Implementasi Hero Animation
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(candi.imageAsset,
