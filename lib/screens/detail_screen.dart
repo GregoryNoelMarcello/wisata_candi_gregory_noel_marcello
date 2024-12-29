@@ -98,14 +98,14 @@ class _DetailScreenState extends State<DetailScreen> {
                 )
               ],
             ),
-            //detail info
+            //Detail info
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 16),
-                  // info atas(nama candi dan tombol favorit)
+                  // Info (atas)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -127,7 +127,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       )
                     ],
                   ),
-                  // info tengah (lokasi, dibangun, tipe)
+                  // Info (tengah)
                   SizedBox(height: 16),
                   Row(
                     children: [
@@ -161,7 +161,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   SizedBox(height: 16),
                   Divider(color: Colors.deepPurple.shade100),
                   SizedBox(height: 16),
-                  // info bawah (deskripsi)
+                  // Info (Bawah)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -177,7 +177,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ],
               ),
             ),
-            // DetailGallery
+            // Detail Gallery
             Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
@@ -195,7 +195,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       itemCount: widget.candi.imageUrls.length,
                       itemBuilder: (context, index){
                         return Padding(padding: EdgeInsets.only(right:8),
-                          // bingkai
+                          // Border bingkai
                           child: GestureDetector(
                             onTap: (){},
                             child: Container(

@@ -35,7 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
     final encrypter = encrypt.Encrypter(encrypt.AES(key));
     final decrytedUsername = encrypter.decrypt64(encryptedUsername, iv: iv);
     final decryptedPassword = encrypter.decrypt64(encryptedPassword, iv: iv);
-    //mengembalikan data terdekripsi
+
     return{'username': decrytedUsername, 'password':decryptedPassword};
   }
   void _signIn() async {
@@ -54,11 +54,11 @@ class _SignInScreenState extends State<SignInScreen> {
             _errorText = '';
             _isSignedIn = true;
             prefs.setBool('isSignedIn', true);
-            // pemanggil untuk menghapus semua halaman dalam tumpukan navigasi
+            // menghapus semua halaman navigasi
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).popUntil((route) => route.isFirst);
             });
-            //sign in berhasil, navigasikan ke layar utama
+            //JIka berhasil, kembali ke homescreen
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushReplacementNamed(context, '/');
             });
